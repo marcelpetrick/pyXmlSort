@@ -4,6 +4,9 @@ class Token:
         self.__type__ = type # initially none
         self.__content__ = content # initially empty
 
+    def __repr__(self):
+        return "(%s, %s)" % (self.__type__, self.__content__)
+
     def getType(self):
         return self.__type__
 
