@@ -9,20 +9,10 @@ class Lexer:
         self.fileName = fileName
         print("Lexer:__init__")
 
-        #self.printInputFile()
-
         # this is not truly class-based, because the content could be handed over via members ..
         cleanContent = self.readAndPrepareInput()
         listOfTokens = self.tokenizeString(cleanContent)
         print(listOfTokens)
-
-#--------------------------------------------------------------------------------------------------------------------
-
-    def printInputFile(self):
-        ''' Print content of the given file. '''
-        with open(self.fileName, "r") as file: # implicit close
-            for line in file:
-                print(line)
 
 # --------------------------------------------------------------------------------------------------------------------
 
@@ -32,17 +22,9 @@ class Lexer:
 
         with open(self.fileName, "r") as file: # implicit close
             for line in file:
-                # remove all kinds of whitespace: newline and tabs
-                line = line.replace("\n", "")
-                line = line.replace("\r", "")
-                line = line.replace("\t", "")
-                # todo replace with lstrip, rstrip
-
+                # remove all kinds of whitespace: newline and tabs with rstrip and lstrip
                 # add it to the complete string
-                #print(line)
-                cleanString += line
-
-                #current = Token("cn", line)
+                cleanString += line.rstrip().lstrip()
 
         print("** readAndPrepareInput **")
         print("\t", cleanString)
@@ -84,18 +66,3 @@ class Lexer:
             print(elem) # just for checking
 
         return returnValue
-
-# --------------------------------------------------------------------------------------------------------------------
-    # todo should be static ..
-    def cutToken(self, input):
-        ''' Returns token string and remaining string.'''
-
-        openBraceIndex = input.index("<")
-        closeBraceIndex = input.index(">")
-
-        # todo throw token-exception in case of openIndex >= closeIndex
-
-        if closeBraceIndex > openBraceIndex:
-            print("found correct indexes", openBraceIndex, closeBraceIndex)
-
-
