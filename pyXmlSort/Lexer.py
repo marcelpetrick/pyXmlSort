@@ -7,12 +7,17 @@ class Lexer:
     ''' task: read the file, remove all whitespace, separate into tokens with identified type '''
     def __init__(self, fileName):
         self.fileName = fileName
-        print("Lexer:__init__")
+        print("Lexer::__init__")
 
         # this is not truly class-based, because the content could be handed over via members ..
         cleanContent = self.readAndPrepareInput()
-        listOfTokens = self.tokenizeString(cleanContent)
-        print(listOfTokens)
+        self.__listOfTokens__ = self.tokenizeString(cleanContent)
+        print(self.__listOfTokens__)
+
+# --------------------------------------------------------------------------------------------------------------------
+
+    def getTokenList(self):
+        return self.__listOfTokens__
 
 # --------------------------------------------------------------------------------------------------------------------
 
