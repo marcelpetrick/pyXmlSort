@@ -1,7 +1,7 @@
-# Lexer.py
-
 from pyXmlSort.Token import Token
-import re # for the regexp-splitting
+from pyXmlSort.Token import TokenType
+
+# --------------------------------------------------------------------------------------------------------------------
 
 class Lexer:
     ''' task: read the file, remove all whitespace, separate into tokens with identified type '''
@@ -36,8 +36,6 @@ class Lexer:
         ''' Create a list of tokens with the fitting content '''
         print("** tokenizeString **")
 
-        returnValue = [Token(), Token()] # todo fix this
-
         splitString = inputString.split(">")
         stringTokenList = []
         # splitting like this removed also the closing >: so add it back to each element
@@ -48,21 +46,52 @@ class Lexer:
                 # in case there is something like "true</CI>" then it has to be split too, before appending
                 if fullItem.__contains__("<"):
                     posOpenBrace = fullItem.index("<")
-                    print("posOpenBrace:", posOpenBrace, fullItem)
-                    # todo continue
+                    #print("posOpenBrace:", posOpenBrace, fullItem)
                     if posOpenBrace != 0:
                         beginning = fullItem[:posOpenBrace]
                         ending = fullItem[posOpenBrace:]
                         stringTokenList.append(beginning)
                         stringTokenList.append(ending)
                     else:
-                        stringTokenList.append(fullItem)
+                        stringTokenList.append(fullItem) # add unaltered
                 else:
-                    stringTokenList.append(fullItem)
+                    stringTokenList.append(fullItem) # add unaltered
 
-        #splitString = re.split("(>)", inputString)
-        print(splitString)
+        # just for checking the intermediate result
+#        print(splitString)
+#        for elem in stringTokenList:
+#            print(elem) # just for checking
+
+        # convert the list of strings to a list of tokens
+        returnValue = []
         for elem in stringTokenList:
-            print(elem) # just for checking
+            returnValue.append(self.recognizeToken(elem))
 
         return returnValue
+
+# --------------------------------------------------------------------------------------------------------------------
+
+    def recognizeToken(self, inputString): #todo may be static
+        ''' Recognize and convert the given string to a fitting Token. '''
+        #print("** recognizeToken **")
+        # form is always <CI> or </CI> - so check at second position for a slash
+        # or, even better: check if first four characters contain CI, /CI, CN, /CN ... else unidentified (which means: take over unaltered)
+        prefix = inputString[:4]
+        print(prefix)
+
+        type = TokenType.UnIdentified
+        # check in that order because CN is contained in /CN!
+        if "/CN" in prefix:
+            type = TokenType.CnEnd
+        elif "CN" in prefix:
+            type = TokenType.CnEnd
+        elif "/CI" in prefix:
+            type = TokenType.CnEnd
+        elif "CI" in prefix:
+            type = TokenType.CnEnd
+        elif ((not "<" in inputString) and (not ">" in inputString)):
+            type = TokenType.Content # seriously: I have no idea what happens if the content is containing < or > .. I treat this right now as unidentified
+
+        return Token(type, inputString)
+
+# --------------------------------------------------------------------------------------------------------------------
