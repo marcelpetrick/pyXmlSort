@@ -5,8 +5,6 @@ from pyXmlSort.Lexer import Lexer # import from python-package has to have the c
 def main():
     inputFile = "TestData/test0.xml"
     lexer = Lexer(inputFile)
-    #lexer.betterRead()
-    # lexer.printTokens()
 
 if __name__ == '__main__':
     main()
