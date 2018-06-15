@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CN Name="Configuration" Version="123.0" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<CN Name="ShipParameters" Semantic="ShipParameters">
+		<CI Name="Name">BootBoot</CI>
+		<CI Name="Callsign">BooBoo</CI>
+		<CN Name="Dimensions">
+			<CI Name="Length" Type="double">1.5000000000e+002</CI>
+			<CI Name="Width" Type="double">3.0000000000e+001</CI>
+			<CI Name="Height" Type="double">5.0000000000e+001</CI>
+		</CN>
+	</CN>
+	<CN Name="Bridge" Semantic="System">
+		<CN Name="General">
+		</CN>
+		<CI Name="SystemType">BigPC</CI>
+		<CN Name="Node1" Semantic="MFC,Host">
+			<CI Name="Id">1</CI>
+			<CI Name="GoodView">true</CI>
+			<CI Name="Group">1</CI>		
+		</CN>
+		<CI Name="Revision" Type="int32">1</CI>
+	</CN>
+</CN>
