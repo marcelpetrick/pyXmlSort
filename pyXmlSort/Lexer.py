@@ -24,7 +24,6 @@ class Lexer:
             for line in file:
                 print(line)
 
-
 # --------------------------------------------------------------------------------------------------------------------
 
     def readAndPrepareInput(self):
@@ -39,12 +38,13 @@ class Lexer:
                 line = line.replace("\t", "")
 
                 # add it to the complete string
-                print(line)
+                #print(line)
                 cleanString += line
 
                 #current = Token("cn", line)
 
-        print(cleanString)
+        print("** readAndPrepareInput **")
+        print("\t", cleanString)
         return cleanString
 
 # --------------------------------------------------------------------------------------------------------------------
@@ -53,4 +53,6 @@ class Lexer:
         ''' Create a list of tokens with the fitting content '''
 
         returnValue = [Token(), Token()]
+
+        print("** tokenizeString **")
         return returnValue
