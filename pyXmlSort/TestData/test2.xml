@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CN Name="Configuration" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<CN Name="ShipParameters" Semantic="ShipParameters">
+		<CI Name="Name">BootBoot</CI>
+		<CI Name="Callsign">BooBoo</CI>
+		<CI Name="SystemType">BigPC</CI>
+	</CN>
+</CN>
