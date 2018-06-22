@@ -9,11 +9,11 @@ def main():
     inputFile = "TestData/test2.xml"  # super simple structure, but has header
     lexer = Lexer(inputFile)
 # ---------------------
-    # for checking the intermediate result, print the current state of the tokens
-    print("########## print the current state of the tokens after lexing ##########")
-    for elem in lexer.getTokenList():
-        print(elem)
-#---------------------
+#     # for checking the intermediate result, print the current state of the tokens
+#     print("########## print the current state of the tokens after lexing ##########")
+#     for elem in lexer.getTokenList():
+#         print(elem)
+# #---------------------
     parser = Parser(lexer.getTokenList())
 
 
