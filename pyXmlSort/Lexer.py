@@ -89,12 +89,14 @@ class Lexer:
         if "/CN" in prefix:
             type = TokenType.CnEnd
         elif "CN" in prefix:
-            type = TokenType.CnEnd
+            type = TokenType.CnStart
         elif "/CI" in prefix:
-            type = TokenType.CnEnd
+            type = TokenType.CiEnd
         elif "CI" in prefix:
-            type = TokenType.CnEnd
-        elif ((not "<" in inputString) and (not ">" in inputString)):
+            type = TokenType.CiStart
+        elif inputString.startswith("<?xml") and inputString.endswith("?>"): #todo add the suffix check
+            type = TokenType.XmlHeader
+        elif ("<" not in inputString) and (">" not in inputString):
             type = TokenType.Content # seriously: I have no idea what happens if the content is containing < or > .. I treat this right now as unidentified
 
         return Token(type, inputString)

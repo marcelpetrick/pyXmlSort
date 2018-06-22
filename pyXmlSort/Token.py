@@ -1,12 +1,20 @@
 from enum import Enum
 
 class TokenType(Enum):
-    UnIdentified = 1
+    '''
+    CnStart needs CnEnd
+    CiStart needs CiEnd
+    Header is really the XML-header (should always be the very first line; will also be reduced with CN to "nothing"
+    Content is anything as string between CI or CN-tags
+    UnIdentified better does never happen!
+    '''
+    UnIdentified = 1 # todo check of the manual numbering is really needed
     CnStart = 2
     CnEnd = 3
     CiStart = 4
     CiEnd = 5
     Content = 6
+    XmlHeader = 7
 
 #----------------------------------------------------------------------------------------------------------------
 
@@ -25,7 +33,5 @@ class Token:
         self.__type__ = type
 
     # todo maybe add for content something similar
-
-# todo enum for token-types: how to define this in python?
 
 #----------------------------------------------------------------------------------------------------------------
