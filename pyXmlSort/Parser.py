@@ -61,7 +61,7 @@ class ParserTestCase(unittest.TestCase):
     def testParserMini(self):
         inputTokenList = [Token(TokenType.XmlHeader, "header"), Token(TokenType.Content, "content")]
         parser = Parser(inputTokenList)
-
+        # todo improve this
         self.assertFalse(parser.isValidState())
 
 #------------------------------------------------------------------------------
